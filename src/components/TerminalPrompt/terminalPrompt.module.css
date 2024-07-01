@@ -1,0 +1,25 @@
+.container {
+  font-family: "Courier New", Courier, monospace;
+}
+
+.history {
+  margin-bottom: 20px;
+}
+
+.historyEntry {
+  margin-bottom: 10px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  border: none;
+  padding: 10px;
+  font-family: "Courier New", Courier, monospace;
+  outline: none;
+  background-color: transparent;
+  cursor: default;
+}
