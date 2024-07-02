@@ -1,4 +1,5 @@
 import { commands } from "../../data/commands";
+import { TerminalIcons } from "../TerminalIcons";
 import { TerminalPrompt } from "../TerminalPrompt/TerminalPrompt";
 import styles from "./terminalTemplate.module.css";
 
@@ -14,7 +15,9 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
   return (
     <div className={styles.container}>
       <div className={styles.header}>
+        <div></div>
         <span>{username}~</span>
+        <TerminalIcons />
       </div>
       <div className={styles.body}>
         {initialMessage.split("\n").map((line, index) => (
