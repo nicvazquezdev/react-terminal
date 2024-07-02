@@ -1,36 +1,37 @@
-import { useState, useCallback } from "react";
-import { messages } from "../data/messages";
+import { useState } from "react";
 
-type Messages = typeof messages;
-type MessageKey = keyof Messages;
+type CommandResponse = string;
 
-type HistoryEntry = {
-  prompt: string;
-  response: string;
+export type Commands = {
+  [key: string]: CommandResponse;
 };
 
-export function useTerminal() {
+export function useTerminal(initialCommands: Commands) {
   const [prompt, setPrompt] = useState<string>("");
-  const [history, setHistory] = useState<HistoryEntry[]>([]);
+  const [history, setHistory] = useState<
+    { prompt: string; response: string }[]
+  >([]);
+  const [commands, setCommands] = useState<Commands>(initialCommands);
 
-  const handleSubmit = useCallback(
-    (e: React.FormEvent) => {
-      e.preventDefault();
-
-      const response =
-        prompt in messages ? messages[prompt as MessageKey] : "Invalid prompt";
-
-      setHistory((prevHistory) => [...prevHistory, { prompt, response }]);
-
-      setPrompt("");
-    },
-    [prompt],
-  );
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    let response: string;
+    if (prompt in commands) {
+      response = commands[prompt];
+    } else {
+      response =
+        "Command not recognized. Type 'help' for a list of available commands.";
+    }
+    setHistory((prevHistory) => [...prevHistory, { prompt, response }]);
+    setPrompt("");
+  };
 
   return {
     prompt,
     setPrompt,
     history,
     handleSubmit,
+    commands,
+    setCommands,
   };
 }

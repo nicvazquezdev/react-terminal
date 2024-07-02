@@ -7,7 +7,6 @@ export default {
   component: TerminalPrompt,
   argTypes: {
     userPrompt: { control: "text" },
-    placeholder: { control: "text" },
   },
 } as Meta;
 
@@ -17,10 +16,19 @@ const Template: StoryFn<TerminalPromptProps> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  userLabel: "user@user",
+  userPrompt: "user@user",
+  initialCommands: {
+    info: "This is the info command. It provides information about the terminal.",
+    help: "This is the help command. It lists all available commands.",
+  },
 };
 
 export const CustomPrompt = Template.bind({});
 CustomPrompt.args = {
-  userLabel: "admin@system",
+  userPrompt: "admin@system",
+  initialCommands: {
+    info: "Admin info command response.",
+    help: "Admin help command response.",
+    custom: "This is a custom command response.",
+  },
 };

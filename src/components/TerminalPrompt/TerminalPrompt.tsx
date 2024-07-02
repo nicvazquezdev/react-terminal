@@ -1,15 +1,18 @@
-import { useTerminal } from "../../hooks";
+import { useTerminal, Commands } from "../../hooks/useTerminal";
 import styles from "./terminalPrompt.module.css";
 import React, { useCallback } from "react";
 
 export interface TerminalPromptProps {
-  userLabel?: string;
+  userPrompt?: string;
+  initialCommands: Commands;
 }
 
 export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
-  userLabel = "user@user",
+  userPrompt = "user@user",
+  initialCommands,
 }) => {
-  const { prompt, setPrompt, history, handleSubmit } = useTerminal();
+  const { prompt, setPrompt, history, handleSubmit } =
+    useTerminal(initialCommands);
 
   const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,10 +23,11 @@ export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
 
   return (
     <div className={styles.container}>
-      <History history={history} userLabel={userLabel} />
+      <History history={history} userPrompt={userPrompt} />
       <form onSubmit={handleSubmit}>
         <label className={styles.label}>
-          {`${userLabel}>`}
+          {userPrompt}
+          {">"}
           <input
             className={styles.input}
             onChange={handleInputChange}
@@ -39,16 +43,16 @@ export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
 
 interface HistoryProps {
   history: { prompt: string; response: string }[];
-  userLabel: string;
+  userPrompt: string;
 }
 
-const History: React.FC<HistoryProps> = ({ history, userLabel }) => {
+const History: React.FC<HistoryProps> = ({ history, userPrompt }) => {
   return (
     <div className={styles.history}>
       {history.map((entry, index) => (
         <div key={index} className={styles.historyEntry}>
           <span>
-            {userLabel}&gt; {entry.prompt}
+            {userPrompt}&gt; {entry.prompt}
           </span>
           <br />
           <span>{entry.response}</span>

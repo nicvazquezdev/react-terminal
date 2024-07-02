@@ -18,8 +18,10 @@
 .input {
   border: none;
   padding: 10px;
-  font-family: "Courier New", Courier, monospace;
   outline: none;
   background-color: transparent;
   cursor: default;
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: inherit;
 }
