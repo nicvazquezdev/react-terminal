@@ -1,10 +1,10 @@
 import "./App.css";
-import { LinuxTerminal } from "./components/LinuxTerminal/LinuxTerminal";
+import { TerminalTemplate } from "./components/TerminalTemplate";
 
 function App() {
   return (
     <div>
-      <LinuxTerminal />
+      <TerminalTemplate />
     </div>
   );
 }
