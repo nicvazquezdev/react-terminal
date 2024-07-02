@@ -1,4 +1,4 @@
-import { useTerminal, Commands } from "../../hooks/useTerminal";
+import { useTerminal, Commands } from "@/hooks/useTerminal";
 import styles from "./terminalPrompt.module.css";
 import React, { useCallback } from "react";
 

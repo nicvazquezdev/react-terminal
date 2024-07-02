@@ -1,4 +1,4 @@
-import { commands } from "../../data/commands";
+import { commands } from "@/data/commands";
 import { TerminalIcons } from "../TerminalIcons";
 import { TerminalPrompt } from "../TerminalPrompt/TerminalPrompt";
 import styles from "./terminalTemplate.module.css";

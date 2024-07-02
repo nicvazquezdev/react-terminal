@@ -1,7 +1,7 @@
 import styles from "./terminalIcons.module.css";
-import MaximizeIcon from "../../assets/icons/icon-maximize-terminal.svg";
-import MinimizeIcon from "../../assets/icons/icon-minimize-terminal.svg";
-import CloseIcon from "../../assets/icons/icon-close-terminal.svg";
+import MaximizeIcon from "@/assets/icons/icon-maximize-terminal.svg";
+import MinimizeIcon from "@/assets/icons/icon-minimize-terminal.svg";
+import CloseIcon from "@/assets/icons/icon-close-terminal.svg";
 
 export const TerminalIcons = () => {
   return (

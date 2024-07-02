@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import { TerminalPrompt, TerminalPromptProps } from "./TerminalPrompt";
-import "../../globals.css";
+import "@/globals.css";
 
 export default {
   title: "Components/TerminalPrompt",

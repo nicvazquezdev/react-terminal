@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import { TerminalTemplate, TerminalTemplateProps } from ".";
-import "../../globals.css";
+import "@/globals.css";
 
 export default {
   title: "Components/TerminalTemplate",
