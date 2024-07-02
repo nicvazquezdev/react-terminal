@@ -15,7 +15,7 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <div></div>
+        <div className={styles.spacer}></div>
         <span>{username}~</span>
         <TerminalIcons />
       </div>
