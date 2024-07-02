@@ -1,12 +1,11 @@
 import "./App.css";
-import { TerminalPrompt } from "./components/TerminalPrompt/TerminalPrompt";
-import { commands } from "./data/commands";
+import { LinuxTerminal } from "./components/LinuxTerminal/LinuxTerminal";
 
 function App() {
   return (
-    <>
-      <TerminalPrompt initialCommands={commands} />
-    </>
+    <div>
+      <LinuxTerminal />
+    </div>
   );
 }
 

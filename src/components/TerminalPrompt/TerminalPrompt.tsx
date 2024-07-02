@@ -51,7 +51,7 @@ const History: React.FC<HistoryProps> = ({ history, userPrompt }) => {
     <div className={styles.history}>
       {history.map((entry, index) => (
         <div key={index} className={styles.historyEntry}>
-          <span>
+          <span className={styles.historyEntry__user}>
             {userPrompt}&gt; {entry.prompt}
           </span>
           <br />

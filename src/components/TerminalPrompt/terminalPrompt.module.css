@@ -1,13 +1,13 @@
-.container {
-  font-family: "Courier New", Courier, monospace;
-}
-
 .history {
-  margin-bottom: 20px;
+  margin-top: 0.5rem;
 }
 
 .historyEntry {
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;
+}
+
+.historyEntry__user {
+  color: var(--green);
 }
 
 .label {
@@ -21,7 +21,6 @@
   outline: none;
   background-color: transparent;
   cursor: default;
-  font-family: "Courier New", Courier, monospace;
   font-size: inherit;
   color: inherit;
 }
