@@ -1,6 +1,6 @@
 import { useTerminal, Commands } from "@/hooks/useTerminal";
 import styles from "./terminalPrompt.module.css";
-import React, { useCallback } from "react";
+import React from "react";
 
 export interface TerminalPromptProps {
   username?: string;
@@ -14,12 +14,9 @@ export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
   const { prompt, setPrompt, history, handleSubmit } =
     useTerminal(initialCommands);
 
-  const handleInputChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setPrompt(e.target.value);
-    },
-    [setPrompt],
-  );
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPrompt(e.target.value);
+  };
 
   return (
     <div className={styles.container}>
