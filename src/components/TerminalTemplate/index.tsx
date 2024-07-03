@@ -18,11 +18,11 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
   draggable = false,
 }) => {
   const { containerRef, handleMouseDown } = useDragDrop(draggable);
-  const { isMinimized, isMaximized, isVisible } = useWindowActions();
+  const { isMinimized, isMaximized, isClosed } = useWindowActions();
+
+  if (isClosed) return null;
 
   if (isMinimized) return <MinimizedTerminal />;
-
-  if (!isVisible) return null;
 
   return (
     <div

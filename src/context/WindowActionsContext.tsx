@@ -1,13 +1,12 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
+type ActionType = "maximize" | "minimize" | "close";
+
 interface WindowActionsContextProps {
   isMinimized: boolean;
   isMaximized: boolean;
-  isVisible: boolean;
-  toggleMaximize: () => void;
-  toggleMinimize: () => void;
-  closeWindow: () => void;
-  handleAction: (action: string | undefined) => void;
+  isClosed: boolean;
+  handleAction: (action: ActionType) => void;
 }
 
 const WindowActionsContext = createContext<
@@ -17,41 +16,33 @@ const WindowActionsContext = createContext<
 export const WindowActionsProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [isMaximized, setIsMaximized] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [isMinimized, setIsMinimized] = useState(false);
+  const [windowState, setWindowState] = useState({
+    isMaximized: false,
+    isClosed: false,
+    isMinimized: false,
+  });
 
-  const toggleMaximize = () => {
-    setIsMaximized((prev) => !prev);
-  };
-
-  const closeWindow = () => {
-    setIsVisible(false);
-  };
-
-  const toggleMinimize = () => {
-    setIsMinimized((prev) => !prev);
-  };
-
-  const handleAction = (action: string | undefined) => {
-    if (action === "maximize") {
-      toggleMaximize();
-    } else if (action === "minimize") {
-      toggleMinimize();
-    } else if (action === "close") {
-      closeWindow();
-    }
+  const handleAction = (action: ActionType) => {
+    setWindowState((prevState) => {
+      switch (action) {
+        case "maximize":
+          return { ...prevState, isMaximized: !prevState.isMaximized };
+        case "minimize":
+          return { ...prevState, isMinimized: !prevState.isMinimized };
+        case "close":
+          return { ...prevState, isClosed: true };
+        default:
+          return prevState;
+      }
+    });
   };
 
   return (
     <WindowActionsContext.Provider
       value={{
-        isMinimized,
-        isMaximized,
-        isVisible,
-        toggleMaximize,
-        toggleMinimize,
-        closeWindow,
+        isMinimized: windowState.isMinimized,
+        isMaximized: windowState.isMaximized,
+        isClosed: windowState.isClosed,
         handleAction,
       }}
     >
