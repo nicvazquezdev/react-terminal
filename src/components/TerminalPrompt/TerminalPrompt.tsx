@@ -1,6 +1,6 @@
 import { useTerminal, Commands } from "@/hooks/useTerminal";
 import styles from "./terminalPrompt.module.css";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { MessageLines } from "../MessageLines.tsx/MessageLines";
 
 export interface TerminalPromptProps {
@@ -14,10 +14,23 @@ export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
 }) => {
   const { prompt, setPrompt, history, handleSubmit } =
     useTerminal(initialCommands);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrompt(e.target.value);
   };
+
+  useEffect(() => {
+    const focusInput = () => {
+      inputRef.current?.focus();
+    };
+
+    document.addEventListener("click", focusInput);
+
+    return () => {
+      document.removeEventListener("click", focusInput);
+    };
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -27,6 +40,7 @@ export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
           {username}
           {">"}
           <input
+            ref={inputRef}
             className={styles.input}
             onChange={handleInputChange}
             value={prompt}
