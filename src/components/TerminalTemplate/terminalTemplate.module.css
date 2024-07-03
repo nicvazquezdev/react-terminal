@@ -3,7 +3,6 @@
   border-radius: 5px;
   width: 300px;
   height: 300px;
-  transition: var(--containerTransition);
   overflow-y: auto;
 }
 

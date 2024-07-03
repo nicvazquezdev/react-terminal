@@ -11,7 +11,7 @@ import { MessageLines } from "../MessageLines.tsx/MessageLines";
 export interface TerminalTemplateProps {
   initialMessage: string;
   username: string;
-  draggable?: boolean;
+  draggable: boolean;
 }
 
 export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({

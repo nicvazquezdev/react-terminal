@@ -47,14 +47,6 @@ export const useDragDrop = (enabled: boolean) => {
   const handleMouseUp = useCallback(() => setIsDragging(false), []);
 
   useEffect(() => {
-    if (containerRef.current) {
-      containerRef.current.style.transition = isDragging
-        ? "0s"
-        : "var(--containerTransition)";
-    }
-  }, [isDragging]);
-
-  useEffect(() => {
     if (enabled) {
       document.addEventListener("mousemove", handleMouseMove);
       document.addEventListener("mouseup", handleMouseUp);
