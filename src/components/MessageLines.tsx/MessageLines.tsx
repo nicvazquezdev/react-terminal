@@ -1,8 +1,8 @@
-interface MessageLinesProps {
+export interface MessageLinesProps {
   message: string;
 }
 
-const MessageLines: React.FC<MessageLinesProps> = ({ message }) => {
+export const MessageLines: React.FC<MessageLinesProps> = ({ message }) => {
   return (
     <>
       {message.split("\n").map((line, index) => (
@@ -11,5 +11,3 @@ const MessageLines: React.FC<MessageLinesProps> = ({ message }) => {
     </>
   );
 };
-
-export default MessageLines;

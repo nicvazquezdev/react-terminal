@@ -6,7 +6,7 @@ import { TerminalPrompt } from "../TerminalPrompt/TerminalPrompt";
 import styles from "./terminalTemplate.module.css";
 import { useDragDrop } from "@/hooks/useDragDrop";
 import { MinimizedTerminal } from "../MinimizedTerminal";
-import MessageLines from "../MessageLines.tsx/MessageLines";
+import { MessageLines } from "../MessageLines.tsx/MessageLines";
 
 export interface TerminalTemplateProps {
   initialMessage: string;

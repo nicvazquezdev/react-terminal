@@ -1,7 +1,7 @@
 import { useTerminal, Commands } from "@/hooks/useTerminal";
 import styles from "./terminalPrompt.module.css";
 import React from "react";
-import MessageLines from "../MessageLines.tsx/MessageLines";
+import { MessageLines } from "../MessageLines.tsx/MessageLines";
 
 export interface TerminalPromptProps {
   username?: string;
