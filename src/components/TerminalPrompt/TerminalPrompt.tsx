@@ -33,6 +33,7 @@ export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
             autoFocus
             type="text"
           />
+          <span className={styles.cursor}></span>
         </label>
       </form>
     </div>
