@@ -1,5 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import { TerminalTemplate, TerminalTemplateProps } from ".";
+import { WindowActionsProvider } from "@/context/WindowActionsContext";
 import "@/globals.css";
 
 export default {
@@ -8,6 +9,13 @@ export default {
   argTypes: {
     username: { control: "text" },
   },
+  decorators: [
+    (Story) => (
+      <WindowActionsProvider>
+        <Story />
+      </WindowActionsProvider>
+    ),
+  ],
 } as Meta;
 
 const Template: StoryFn<TerminalTemplateProps> = (args) => (
