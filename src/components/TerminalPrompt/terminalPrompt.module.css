@@ -23,4 +23,5 @@
   cursor: default;
   font-size: inherit;
   color: inherit;
+  min-width: 0;
 }
