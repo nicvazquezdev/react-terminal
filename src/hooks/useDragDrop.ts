@@ -5,15 +5,20 @@ export const useDragDrop = (enabled: boolean) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const offset = useRef({ x: 0, y: 0 });
 
+  const getClientCoordinates = (
+    e: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent,
+  ) => {
+    const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+    const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+    return { clientX, clientY };
+  };
+
   const handleMouseDown = useCallback(
     (
       e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>,
     ) => {
-      console.log("mousedown");
       if (enabled && containerRef.current) {
-        const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
-        const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
-
+        const { clientX, clientY } = getClientCoordinates(e);
         offset.current = {
           x: clientX - containerRef.current.offsetLeft,
           y: clientY - containerRef.current.offsetTop,
@@ -27,9 +32,7 @@ export const useDragDrop = (enabled: boolean) => {
   const handleMouseMove = useCallback(
     (e: MouseEvent | TouchEvent) => {
       if (isDragging && containerRef.current) {
-        const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
-        const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
-
+        const { clientX, clientY } = getClientCoordinates(e);
         containerRef.current.style.left = `${clientX - offset.current.x}px`;
         containerRef.current.style.top = `${clientY - offset.current.y}px`;
       }
@@ -37,19 +40,13 @@ export const useDragDrop = (enabled: boolean) => {
     [isDragging],
   );
 
-  const handleMouseUp = useCallback(() => {
-    if (isDragging) {
-      setIsDragging(false);
-    }
-  }, [isDragging]);
+  const handleMouseUp = useCallback(() => setIsDragging(false), []);
 
   useEffect(() => {
     if (containerRef.current) {
-      if (isDragging) {
-        containerRef.current.style.transition = "0s";
-      } else {
-        containerRef.current.style.transition = "var(--containerTransition)";
-      }
+      containerRef.current.style.transition = isDragging
+        ? "0s"
+        : "var(--containerTransition)";
     }
   }, [isDragging]);
 
