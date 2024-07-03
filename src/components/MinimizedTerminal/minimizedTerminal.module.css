@@ -1,0 +1,11 @@
+.img {
+  width: 80px;
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  cursor: pointer;
+  transition: 0.2s;
+  &:hover {
+    transform: scale(1.1);
+  }
+}

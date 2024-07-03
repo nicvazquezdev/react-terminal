@@ -1,32 +1,30 @@
-import { useTerminal, Commands } from "../../hooks/useTerminal";
+import { useTerminal, Commands } from "@/hooks/useTerminal";
 import styles from "./terminalPrompt.module.css";
-import React, { useCallback } from "react";
+import React from "react";
+import { MessageLines } from "../MessageLines.tsx/MessageLines";
 
 export interface TerminalPromptProps {
-  userPrompt?: string;
+  username?: string;
   initialCommands: Commands;
 }
 
 export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
-  userPrompt = "user@user",
+  username = "user@user",
   initialCommands,
 }) => {
   const { prompt, setPrompt, history, handleSubmit } =
     useTerminal(initialCommands);
 
-  const handleInputChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setPrompt(e.target.value);
-    },
-    [setPrompt],
-  );
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPrompt(e.target.value);
+  };
 
   return (
     <div className={styles.container}>
-      <History history={history} userPrompt={userPrompt} />
+      <History history={history} username={username} />
       <form onSubmit={handleSubmit}>
         <label className={styles.label}>
-          {userPrompt}
+          {username}
           {">"}
           <input
             className={styles.input}
@@ -43,19 +41,19 @@ export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
 
 interface HistoryProps {
   history: { prompt: string; response: string }[];
-  userPrompt: string;
+  username: string;
 }
 
-const History: React.FC<HistoryProps> = ({ history, userPrompt }) => {
+const History: React.FC<HistoryProps> = ({ history, username }) => {
   return (
     <div className={styles.history}>
       {history.map((entry, index) => (
         <div key={index} className={styles.historyEntry}>
-          <span>
-            {userPrompt}&gt; {entry.prompt}
+          <span className={styles.historyEntry__user}>
+            {username}&gt; {entry.prompt}
           </span>
           <br />
-          <span>{entry.response}</span>
+          <MessageLines message={entry.response} />
         </div>
       ))}
     </div>
