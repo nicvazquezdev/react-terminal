@@ -21,4 +21,5 @@ To run a command as administrator (user "root"), use "sudo <command>".
 See "man sudo_root" for details.
 `,
   username: "user@linux-desktop",
+  draggable: true,
 };

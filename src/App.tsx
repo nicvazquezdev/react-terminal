@@ -4,7 +4,11 @@ import { TerminalTemplate } from "./components/TerminalTemplate";
 function App() {
   return (
     <div>
-      <TerminalTemplate initialMessage={"hello world"} username={"nic@linux"} />
+      <TerminalTemplate
+        initialMessage={"hello world"}
+        username={"nic@linux"}
+        draggable={true}
+      />
     </div>
   );
 }

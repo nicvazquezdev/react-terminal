@@ -2,19 +2,27 @@ import { commands } from "@/data/commands";
 import { TerminalIcons } from "../TerminalIcons";
 import { TerminalPrompt } from "../TerminalPrompt/TerminalPrompt";
 import styles from "./terminalTemplate.module.css";
+import { useDragDrop } from "@/hooks/useDragDrop";
 
 export interface TerminalTemplateProps {
   initialMessage: string;
   username: string;
+  draggable: boolean;
 }
 
 export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
   initialMessage,
   username,
+  draggable,
 }) => {
+  const { containerRef, handleMouseDown } = useDragDrop(draggable);
+
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
+    <div ref={containerRef} className={styles.container}>
+      <div
+        className={styles.header}
+        onMouseDown={draggable ? handleMouseDown : undefined}
+      >
         <div className={styles.spacer}></div>
         <span>{username}~</span>
         <TerminalIcons />

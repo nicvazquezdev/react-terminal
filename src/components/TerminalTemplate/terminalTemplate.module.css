@@ -1,7 +1,7 @@
 .container {
   background-color: var(--purple);
   border-radius: 5px;
-  position: relative;
+  position: absolute;
 }
 
 @media (min-width: 768px) {
