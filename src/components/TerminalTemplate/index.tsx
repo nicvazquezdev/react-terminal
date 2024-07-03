@@ -8,13 +8,13 @@ import { useDragDrop } from "@/hooks/useDragDrop";
 export interface TerminalTemplateProps {
   initialMessage: string;
   username: string;
-  draggable: boolean;
+  draggable?: boolean;
 }
 
 export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
   initialMessage,
   username,
-  draggable,
+  draggable = false,
 }) => {
   const { containerRef, handleMouseDown } = useDragDrop(draggable);
   const [isMaximized, setIsMaximized] = useState(false);
@@ -31,6 +31,7 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
       <div
         className={styles.header}
         onMouseDown={draggable && !isMaximized ? handleMouseDown : undefined}
+        onTouchStart={draggable && !isMaximized ? handleMouseDown : undefined}
       >
         <div className={styles.spacer}></div>
         <span>{username}~</span>
