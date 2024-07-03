@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 
 export const useDragDrop = (enabled: boolean) => {
   const [isDragging, setIsDragging] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
   const offset = useRef({ x: 0, y: 0 });
 
@@ -33,8 +34,11 @@ export const useDragDrop = (enabled: boolean) => {
     (e: MouseEvent | TouchEvent) => {
       if (isDragging && containerRef.current) {
         const { clientX, clientY } = getClientCoordinates(e);
-        containerRef.current.style.left = `${clientX - offset.current.x}px`;
-        containerRef.current.style.top = `${clientY - offset.current.y}px`;
+        const newX = clientX - offset.current.x;
+        const newY = clientY - offset.current.y;
+        setPosition({ x: newX, y: newY });
+        containerRef.current.style.left = `${newX}px`;
+        containerRef.current.style.top = `${newY}px`;
       }
     },
     [isDragging],
@@ -70,5 +74,7 @@ export const useDragDrop = (enabled: boolean) => {
   return {
     containerRef,
     handleMouseDown,
+    position,
+    setPosition,
   };
 };

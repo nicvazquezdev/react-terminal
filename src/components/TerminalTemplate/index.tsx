@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useWindowActions } from "@/context/WindowActionsContext";
 import { commands } from "@/data/commands";
 import { TerminalIcons } from "../TerminalIcons";
@@ -17,8 +18,22 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
   username,
   draggable = false,
 }) => {
-  const { containerRef, handleMouseDown } = useDragDrop(draggable);
+  const { containerRef, handleMouseDown, position, setPosition } =
+    useDragDrop(draggable);
   const { isMinimized, isMaximized, isClosed } = useWindowActions();
+  const [prevPosition, setPrevPosition] = useState(position);
+
+  useEffect(() => {
+    if (!isMinimized) {
+      setPosition(prevPosition);
+    }
+  }, [isMinimized, prevPosition, setPosition]);
+
+  useEffect(() => {
+    if (!isMinimized) {
+      setPrevPosition(position);
+    }
+  }, [isMinimized, position]);
 
   if (isClosed) return null;
 
@@ -28,6 +43,7 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
     <div
       ref={containerRef}
       className={`${styles.container} ${isMaximized && styles.containerMaximized} ${draggable && styles.containerDraggable}`}
+      style={{ left: position.x, top: position.y }}
     >
       <div
         className={styles.header}
