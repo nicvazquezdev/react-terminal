@@ -1,6 +1,7 @@
 import { useTerminal, Commands } from "@/hooks/useTerminal";
 import styles from "./terminalPrompt.module.css";
 import React from "react";
+import MessageLines from "../MessageLines.tsx/MessageLines";
 
 export interface TerminalPromptProps {
   username?: string;
@@ -52,7 +53,7 @@ const History: React.FC<HistoryProps> = ({ history, username }) => {
             {username}&gt; {entry.prompt}
           </span>
           <br />
-          <span>{entry.response}</span>
+          <MessageLines message={entry.response} />
         </div>
       ))}
     </div>

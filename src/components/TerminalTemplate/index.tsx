@@ -6,6 +6,7 @@ import { TerminalPrompt } from "../TerminalPrompt/TerminalPrompt";
 import styles from "./terminalTemplate.module.css";
 import { useDragDrop } from "@/hooks/useDragDrop";
 import { MinimizedTerminal } from "../MinimizedTerminal";
+import MessageLines from "../MessageLines.tsx/MessageLines";
 
 export interface TerminalTemplateProps {
   initialMessage: string;
@@ -55,9 +56,7 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
         <TerminalIcons />
       </div>
       <div className={styles.body}>
-        {initialMessage.split("\n").map((line, index) => (
-          <p key={index}>{line}</p>
-        ))}
+        <MessageLines message={initialMessage} />
         <TerminalPrompt username={username} initialCommands={commands} />
       </div>
     </div>
