@@ -35,7 +35,7 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
       >
         <div className={styles.spacer}></div>
         <span>{username}~</span>
-        <TerminalIcons onMaximize={toggleMaximize} />
+        <TerminalIcons onMaximize={toggleMaximize} isMaximized={isMaximized} />
       </div>
       <div className={styles.body}>
         {initialMessage.split("\n").map((line, index) => (
