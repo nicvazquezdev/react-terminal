@@ -11,6 +11,7 @@ const icons = [
   {
     src: MaximizeIcon,
     alt: "Maximize",
+    action: "maximize",
   },
   {
     src: CloseIcon,
@@ -19,13 +20,22 @@ const icons = [
   },
 ];
 
-export const TerminalIcons = () => {
+export const TerminalIcons: React.FC<{ onMaximize: () => void }> = ({
+  onMaximize,
+}) => {
+  const handleClick = (action: string | undefined) => {
+    if (action === "maximize") {
+      onMaximize();
+    }
+  };
+
   return (
     <div className={styles.icons}>
       {icons.map((icon, index) => (
         <div
           key={index}
           className={`${styles.icons__iconContainer} ${icon.customClass}`}
+          onClick={() => handleClick(icon.action)}
         >
           <img
             src={icon.src}

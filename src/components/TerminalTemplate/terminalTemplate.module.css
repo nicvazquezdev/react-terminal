@@ -1,15 +1,37 @@
 .container {
   background-color: var(--purple);
   border-radius: 5px;
+  width: 300px;
+  height: 300px;
+  transition: var(--containerTransition);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.containerDraggable {
   position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.containerMaximized {
+  position: fixed;
+  /* We need the !important to override the offsets from the draggable */
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
 }
 
 @media (min-width: 768px) {
   .container {
     height: 400px;
     width: 600px;
-    overflow-y: auto;
-    overflow-x: hidden;
     scroll-behavior: auto;
 
     &::-webkit-scrollbar {
@@ -28,6 +50,10 @@
       border-radius: 10px;
       background: gray;
     }
+  }
+  .containerMaximized {
+    width: 100vw;
+    height: 100vh;
   }
 }
 
