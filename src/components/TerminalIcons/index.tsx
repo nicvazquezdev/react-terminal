@@ -3,15 +3,16 @@ import MaximizeIcon from "@/assets/icons/icon-maximize-terminal.svg";
 import RestoreIcon from "@/assets/icons/icon-restore-terminal.svg";
 import MinimizeIcon from "@/assets/icons/icon-minimize-terminal.svg";
 import CloseIcon from "@/assets/icons/icon-close-terminal.svg";
+import { useWindowActions } from "@/context/WindowActionsContext";
 
-export const TerminalIcons: React.FC<{
-  handleAction: (action: string | undefined) => void;
-  isMaximized: boolean;
-}> = ({ handleAction, isMaximized }) => {
+export const TerminalIcons: React.FC = () => {
+  const { isMaximized, handleAction } = useWindowActions();
+
   const icons = [
     {
       src: MinimizeIcon,
       alt: "Minimize",
+      action: "minimize",
     },
     {
       src: isMaximized ? RestoreIcon : MaximizeIcon,

@@ -1,15 +1,16 @@
 import "./App.css";
 import { TerminalTemplate } from "./components/TerminalTemplate";
+import { WindowActionsProvider } from "./context/WindowActionsContext";
 
 function App() {
   return (
-    <div>
+    <WindowActionsProvider>
       <TerminalTemplate
         initialMessage={"hello world"}
         username={"nic@linux"}
         draggable={true}
       />
-    </div>
+    </WindowActionsProvider>
   );
 }
 

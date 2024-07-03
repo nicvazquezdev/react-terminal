@@ -1,9 +1,10 @@
-import { useWindowActions } from "@/hooks/useWindowActions";
+import { useWindowActions } from "@/context/WindowActionsContext";
 import { commands } from "@/data/commands";
 import { TerminalIcons } from "../TerminalIcons";
 import { TerminalPrompt } from "../TerminalPrompt/TerminalPrompt";
 import styles from "./terminalTemplate.module.css";
 import { useDragDrop } from "@/hooks/useDragDrop";
+import { MinimizedTerminal } from "../MinimizedTerminal";
 
 export interface TerminalTemplateProps {
   initialMessage: string;
@@ -17,16 +18,16 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
   draggable = false,
 }) => {
   const { containerRef, handleMouseDown } = useDragDrop(draggable);
-  const { isMaximized, isVisible, handleAction } = useWindowActions();
+  const { isMinimized, isMaximized, isVisible } = useWindowActions();
 
-  if (!isVisible) {
-    return null;
-  }
+  if (isMinimized) return <MinimizedTerminal />;
+
+  if (!isVisible) return null;
 
   return (
     <div
       ref={containerRef}
-      className={`${styles.container} ${isMaximized ? styles.containerMaximized : ""} ${draggable ? styles.containerDraggable : ""}`}
+      className={`${styles.container} ${isMaximized && styles.containerMaximized} ${draggable && styles.containerDraggable}`}
     >
       <div
         className={styles.header}
@@ -35,7 +36,7 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
       >
         <div className={styles.spacer}></div>
         <span>{username}~</span>
-        <TerminalIcons handleAction={handleAction} isMaximized={isMaximized} />
+        <TerminalIcons />
       </div>
       <div className={styles.body}>
         {initialMessage.split("\n").map((line, index) => (
