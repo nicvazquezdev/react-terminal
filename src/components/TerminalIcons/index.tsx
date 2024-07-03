@@ -5,10 +5,9 @@ import MinimizeIcon from "@/assets/icons/icon-minimize-terminal.svg";
 import CloseIcon from "@/assets/icons/icon-close-terminal.svg";
 
 export const TerminalIcons: React.FC<{
-  onMaximize: () => void;
+  handleAction: (action: string | undefined) => void;
   isMaximized: boolean;
-  onClose: () => void;
-}> = ({ onMaximize, isMaximized, onClose }) => {
+}> = ({ handleAction, isMaximized }) => {
   const icons = [
     {
       src: MinimizeIcon,
@@ -27,21 +26,13 @@ export const TerminalIcons: React.FC<{
     },
   ];
 
-  const handleClick = (action: string | undefined) => {
-    if (action === "maximize") {
-      onMaximize();
-    } else if (action === "close") {
-      onClose();
-    }
-  };
-
   return (
     <div className={styles.icons}>
       {icons.map((icon, index) => (
         <div
           key={index}
           className={`${styles.icons__iconContainer} ${icon.customClass || ""}`}
-          onClick={() => handleClick(icon.action)}
+          onClick={() => handleAction(icon.action)}
         >
           <img
             src={icon.src}

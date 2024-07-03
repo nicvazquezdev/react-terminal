@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useWindowActions } from "@/hooks/useWindowActions";
 import { commands } from "@/data/commands";
 import { TerminalIcons } from "../TerminalIcons";
 import { TerminalPrompt } from "../TerminalPrompt/TerminalPrompt";
@@ -17,16 +17,7 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
   draggable = false,
 }) => {
   const { containerRef, handleMouseDown } = useDragDrop(draggable);
-  const [isMaximized, setIsMaximized] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-
-  const toggleMaximize = () => {
-    setIsMaximized(!isMaximized);
-  };
-
-  const closeTerminal = () => {
-    setIsVisible(false);
-  };
+  const { isMaximized, isVisible, handleAction } = useWindowActions();
 
   if (!isVisible) {
     return null;
@@ -39,16 +30,12 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
     >
       <div
         className={styles.header}
-        onMouseDown={draggable && !isMaximized ? handleMouseDown : undefined}
-        onTouchStart={draggable && !isMaximized ? handleMouseDown : undefined}
+        onMouseDown={draggable ? handleMouseDown : undefined}
+        onTouchStart={draggable ? handleMouseDown : undefined}
       >
         <div className={styles.spacer}></div>
         <span>{username}~</span>
-        <TerminalIcons
-          onMaximize={toggleMaximize}
-          isMaximized={isMaximized}
-          onClose={closeTerminal}
-        />
+        <TerminalIcons handleAction={handleAction} isMaximized={isMaximized} />
       </div>
       <div className={styles.body}>
         {initialMessage.split("\n").map((line, index) => (
