@@ -4,11 +4,19 @@ import RestoreIcon from "@/assets/icons/icon-restore-terminal.svg";
 import MinimizeIcon from "@/assets/icons/icon-minimize-terminal.svg";
 import CloseIcon from "@/assets/icons/icon-close-terminal.svg";
 import { useWindowActions } from "@/context/WindowActionsContext";
+import { ActionType } from "@/types/types";
 
 export const TerminalIcons: React.FC = () => {
   const { isMaximized, handleAction } = useWindowActions();
 
-  const icons = [
+  interface Icon {
+    src: string;
+    alt: string;
+    action: ActionType;
+    customClass?: string;
+  }
+
+  const icons: Icon[] = [
     {
       src: MinimizeIcon,
       alt: "Minimize",
