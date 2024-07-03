@@ -18,10 +18,19 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
 }) => {
   const { containerRef, handleMouseDown } = useDragDrop(draggable);
   const [isMaximized, setIsMaximized] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   const toggleMaximize = () => {
     setIsMaximized(!isMaximized);
   };
+
+  const closeTerminal = () => {
+    setIsVisible(false);
+  };
+
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <div
@@ -35,7 +44,11 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
       >
         <div className={styles.spacer}></div>
         <span>{username}~</span>
-        <TerminalIcons onMaximize={toggleMaximize} isMaximized={isMaximized} />
+        <TerminalIcons
+          onMaximize={toggleMaximize}
+          isMaximized={isMaximized}
+          onClose={closeTerminal}
+        />
       </div>
       <div className={styles.body}>
         {initialMessage.split("\n").map((line, index) => (

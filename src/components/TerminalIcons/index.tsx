@@ -7,7 +7,8 @@ import CloseIcon from "@/assets/icons/icon-close-terminal.svg";
 export const TerminalIcons: React.FC<{
   onMaximize: () => void;
   isMaximized: boolean;
-}> = ({ onMaximize, isMaximized }) => {
+  onClose: () => void;
+}> = ({ onMaximize, isMaximized, onClose }) => {
   const icons = [
     {
       src: MinimizeIcon,
@@ -21,6 +22,7 @@ export const TerminalIcons: React.FC<{
     {
       src: CloseIcon,
       alt: "Close",
+      action: "close",
       customClass: styles.icons__iconContainer_close,
     },
   ];
@@ -28,6 +30,8 @@ export const TerminalIcons: React.FC<{
   const handleClick = (action: string | undefined) => {
     if (action === "maximize") {
       onMaximize();
+    } else if (action === "close") {
+      onClose();
     }
   };
 
