@@ -1,6 +1,5 @@
+import { ActionType } from "@/types/types";
 import React, { createContext, useContext, useState, ReactNode } from "react";
-
-type ActionType = "maximize" | "minimize" | "close";
 
 interface WindowActionsContextProps {
   isMinimized: boolean;
