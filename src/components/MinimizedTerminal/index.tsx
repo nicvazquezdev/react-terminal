@@ -8,7 +8,7 @@ export const MinimizedTerminal: React.FC = () => {
     <div>
       <img
         className={styles.img}
-        onClick={() => handleAction("minimize")}
+        onClick={() => handleAction("restore")}
         src={TerminalIcon}
         alt="Terminal Icon"
       />

@@ -6,7 +6,11 @@ import CloseIcon from "@/assets/icons/icon-close-terminal.svg";
 import { ActionType } from "@/types/types";
 import { useWindowActions } from "@/hooks";
 
-export const TerminalIcons: React.FC = () => {
+interface TerminalIconsProps {
+  iconFill?: string;
+}
+
+export const TerminalIcons: React.FC<TerminalIconsProps> = ({ iconFill }) => {
   const { isMaximized, handleAction } = useWindowActions();
 
   interface Icon {
@@ -47,6 +51,7 @@ export const TerminalIcons: React.FC = () => {
             src={icon.src}
             alt={icon.alt}
             className={styles.icons__iconContainer__icon}
+            style={{ fill: iconFill }}
           />
         </div>
       ))}

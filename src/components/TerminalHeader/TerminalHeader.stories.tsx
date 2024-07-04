@@ -10,6 +10,7 @@ export default {
     username: { control: "text" },
     draggable: { control: "boolean" },
     handleMouseDown: { action: "handleMouseDown" },
+    style: { control: "object" },
   },
   decorators: [
     (Story) => (
@@ -29,4 +30,8 @@ Default.args = {
   username: "user@user",
   draggable: true,
   handleMouseDown: (event) => console.log("Mouse down event:", event),
+  style: {
+    color: "#FFF",
+    backgroundColor: "#222",
+  },
 };

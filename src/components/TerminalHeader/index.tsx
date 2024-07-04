@@ -7,20 +7,25 @@ export interface TerminalHeaderProps {
   handleMouseDown: (
     event: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>,
   ) => void;
+  style?: React.CSSProperties;
+  iconFill?: string;
 }
 
 export const TerminalHeader: React.FC<TerminalHeaderProps> = ({
   username,
   draggable,
   handleMouseDown,
+  style,
+  iconFill,
 }) => (
   <div
     className={styles.header}
     onMouseDown={draggable ? handleMouseDown : undefined}
     onTouchStart={draggable ? handleMouseDown : undefined}
+    style={style}
   >
     <div className={styles.spacer}></div>
     <span>{username}~</span>
-    <TerminalIcons />
+    <TerminalIcons iconFill={iconFill} />
   </div>
 );

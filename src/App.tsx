@@ -1,6 +1,7 @@
 import "./App.css";
 import { TerminalTemplate } from "./components/TerminalTemplate";
 import { WindowActionsProvider } from "./context/WindowActionsContext";
+import { defaultTheme } from "./data";
 
 function App() {
   return (
@@ -16,9 +17,14 @@ function App() {
         }}
       >
         <TerminalTemplate
-          initialMessage={"hello world"}
-          username={"nic@linux"}
+          initialMessage={`
+To run a command as administrator (user "root"), use "sudo <command>".\n
+See "man sudo_root" for details.
+`}
+          username="nicvazquez@react-terminal"
           draggable={true}
+          theme={defaultTheme}
+          minimizedByDefault={false}
         />
       </div>
     </WindowActionsProvider>

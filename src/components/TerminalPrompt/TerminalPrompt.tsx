@@ -6,11 +6,17 @@ import { MessageLines } from "../MessageLines.tsx/MessageLines";
 export interface TerminalPromptProps {
   username?: string;
   initialCommands: Commands;
+  style: React.CSSProperties;
+  promptLabelTextColor: string;
+  inputTextColor: string;
 }
 
 export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
   username = "user@user",
   initialCommands,
+  style,
+  promptLabelTextColor,
+  inputTextColor,
 }) => {
   const { prompt, setPrompt, history, handleSubmit } =
     useTerminal(initialCommands);
@@ -37,13 +43,20 @@ export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
   }, []);
 
   return (
-    <div className={styles.container}>
-      <History history={history} username={username} />
+    <div className={styles.container} style={style}>
+      <History
+        history={history}
+        username={username}
+        historyLabelTextColor={promptLabelTextColor}
+      />
       <form onSubmit={handleSubmit}>
         <label className={styles.label}>
-          {username}
-          {">"}
+          <span style={{ color: promptLabelTextColor }}>
+            {username}
+            {">"}
+          </span>
           <input
+            style={{ color: inputTextColor }}
             ref={inputRef}
             className={styles.input}
             onChange={handleInputChange}
@@ -61,15 +74,21 @@ export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
 interface HistoryProps {
   history: { prompt: string; response: string }[];
   username: string;
+  historyLabelTextColor: string;
 }
 
-const History: React.FC<HistoryProps> = ({ history, username }) => {
+const History: React.FC<HistoryProps> = ({
+  history,
+  username,
+  historyLabelTextColor,
+}) => {
   return (
     <div className={styles.history}>
       {history.map((entry, index) => (
         <div key={index} className={styles.historyEntry}>
           <span className={styles.historyEntry__user}>
-            {username}&gt; {entry.prompt}
+            <span style={{ color: historyLabelTextColor }}>{username}&gt;</span>{" "}
+            {entry.prompt}
           </span>
           <br />
           <MessageLines message={entry.response} />
