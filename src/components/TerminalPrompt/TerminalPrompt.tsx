@@ -21,6 +21,10 @@ export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
   };
 
   useEffect(() => {
+    inputRef.current?.scrollIntoView();
+  }, [history]);
+
+  useEffect(() => {
     const focusInput = () => {
       inputRef.current?.focus();
     };
