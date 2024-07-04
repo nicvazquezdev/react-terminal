@@ -1,6 +1,6 @@
 import TerminalIcon from "@/assets/terminal-icon.png";
-import { useWindowActions } from "@/context/WindowActionsContext";
 import styles from "./minimizedTerminal.module.css";
+import { useWindowActions } from "@/hooks";
 
 export const MinimizedTerminal: React.FC = () => {
   const { handleAction } = useWindowActions();

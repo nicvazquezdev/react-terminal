@@ -8,7 +8,7 @@ interface WindowActionsContextProps {
   handleAction: (action: ActionType) => void;
 }
 
-const WindowActionsContext = createContext<
+export const WindowActionsContext = createContext<
   WindowActionsContextProps | undefined
 >(undefined);
 
@@ -48,14 +48,4 @@ export const WindowActionsProvider: React.FC<{ children: ReactNode }> = ({
       {children}
     </WindowActionsContext.Provider>
   );
-};
-
-export const useWindowActions = () => {
-  const context = useContext(WindowActionsContext);
-  if (context === undefined) {
-    throw new Error(
-      "useWindowActions must be used within a WindowActionsProvider",
-    );
-  }
-  return context;
 };
