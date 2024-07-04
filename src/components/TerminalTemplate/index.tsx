@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { commands } from "@/data/commands";
-import { TerminalIcons } from "../TerminalIcons";
 import { TerminalPrompt } from "../TerminalPrompt/TerminalPrompt";
 import styles from "./terminalTemplate.module.css";
 import { MinimizedTerminal } from "../MinimizedTerminal";
 import { MessageLines } from "../MessageLines.tsx/MessageLines";
 import { useDragDrop, useWindowActions } from "@/hooks";
+import { TerminalHeader } from "../TerminalHeader";
 
 export interface TerminalTemplateProps {
   initialMessage: string;
@@ -42,18 +42,16 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
   return (
     <div
       ref={containerRef}
-      className={`${styles.container} ${isMaximized && styles.containerMaximized} ${draggable && styles.containerDraggable}`}
+      className={`${styles.container} ${
+        isMaximized && styles.containerMaximized
+      } ${draggable && styles.containerDraggable}`}
       style={{ left: position.x, top: position.y }}
     >
-      <div
-        className={styles.header}
-        onMouseDown={draggable ? handleMouseDown : undefined}
-        onTouchStart={draggable ? handleMouseDown : undefined}
-      >
-        <div className={styles.spacer}></div>
-        <span>{username}~</span>
-        <TerminalIcons />
-      </div>
+      <TerminalHeader
+        username={username}
+        draggable={draggable}
+        handleMouseDown={handleMouseDown}
+      />
       <div className={styles.body}>
         <MessageLines message={initialMessage} />
         <TerminalPrompt username={username} initialCommands={commands} />
