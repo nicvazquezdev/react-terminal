@@ -62,7 +62,8 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
       style={{
         left: position.x,
         top: position.y,
-        backgroundColor: mergedTheme.backgroundColor,
+        backgroundColor:
+          mergedTheme.backgroundColor ?? mergedTheme.body?.backgroundColor,
         color: mergedTheme.body?.textColor,
       }}
     >
