@@ -27,7 +27,9 @@ export const WindowActionsProvider: React.FC<{ children: ReactNode }> = ({
         case "maximize":
           return { ...prevState, isMaximized: !prevState.isMaximized };
         case "minimize":
-          return { ...prevState, isMinimized: !prevState.isMinimized };
+          return { ...prevState, isMinimized: true };
+        case "restore":
+          return { ...prevState, isMinimized: false };
         case "close":
           return { ...prevState, isClosed: true };
         default:

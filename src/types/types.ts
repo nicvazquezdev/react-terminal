@@ -1,4 +1,4 @@
-export type ActionType = "maximize" | "minimize" | "close";
+export type ActionType = "maximize" | "minimize" | "close" | "restore";
 
 export interface Theme {
   backgroundColor?: string;
