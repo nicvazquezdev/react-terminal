@@ -45,7 +45,10 @@ See "man sudo_root" for details.
       backgroundColor: "#282c34",
     },
     prompt: {
-      textColor: "#61dafb",
+      textColor: "#fafafa",
+      history: {
+        textColor: "#ff79c6",
+      },
     },
   },
 };

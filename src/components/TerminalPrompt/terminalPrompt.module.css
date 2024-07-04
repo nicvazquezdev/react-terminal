@@ -6,10 +6,6 @@
   margin-bottom: 0.5rem;
 }
 
-.historyEntry__user {
-  color: var(--green);
-}
-
 .label {
   display: flex;
   align-items: center;

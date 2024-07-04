@@ -29,7 +29,12 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
       icons: { fill: "#FFF" },
     },
     body: { textColor: "#EEE", backgroundColor: "#111" },
-    prompt: { textColor: "#0F0" },
+    prompt: {
+      textColor: "#0F0",
+      history: {
+        textColor: "#FFF",
+      },
+    },
   },
 }) => {
   const { containerRef, handleMouseDown, position, setPosition } =
@@ -97,6 +102,7 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
           style={{
             color: theme.prompt?.textColor,
           }}
+          historyTextColor={theme.prompt?.history?.textColor}
         />
       </div>
     </div>

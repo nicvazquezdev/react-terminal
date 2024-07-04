@@ -7,12 +7,14 @@ export interface TerminalPromptProps {
   username?: string;
   initialCommands: Commands;
   style?: React.CSSProperties;
+  historyTextColor?: string;
 }
 
 export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
   username = "user@user",
   initialCommands,
   style,
+  historyTextColor,
 }) => {
   const { prompt, setPrompt, history, handleSubmit } =
     useTerminal(initialCommands);
@@ -40,7 +42,11 @@ export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
 
   return (
     <div className={styles.container} style={style}>
-      <History history={history} username={username} />
+      <History
+        history={history}
+        username={username}
+        textColor={historyTextColor}
+      />
       <form onSubmit={handleSubmit}>
         <label className={styles.label}>
           {username}
@@ -63,14 +69,18 @@ export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
 interface HistoryProps {
   history: { prompt: string; response: string }[];
   username: string;
+  textColor?: string; // Nueva prop para el color del texto
 }
 
-const History: React.FC<HistoryProps> = ({ history, username }) => {
+const History: React.FC<HistoryProps> = ({ history, username, textColor }) => {
   return (
     <div className={styles.history}>
       {history.map((entry, index) => (
         <div key={index} className={styles.historyEntry}>
-          <span className={styles.historyEntry__user}>
+          <span
+            className={styles.historyEntry__user}
+            style={{ color: textColor }}
+          >
             {username}&gt; {entry.prompt}
           </span>
           <br />

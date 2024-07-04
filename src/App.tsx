@@ -8,13 +8,19 @@ function App() {
     header: {
       textColor: "#61dafb",
       backgroundColor: "#20232a",
+      icons: {
+        fill: "lightgray",
+      },
     },
     body: {
       textColor: "#ffffff",
       backgroundColor: "#282c34",
     },
     prompt: {
-      textColor: "#61dafb",
+      textColor: "",
+      history: {
+        textColor: "#ff79c6",
+      },
     },
   };
   return (
@@ -34,6 +40,7 @@ function App() {
           username="nic@linux"
           draggable={true}
           theme={customTheme}
+          minimizedByDefault={false}
         />
       </div>
     </WindowActionsProvider>
