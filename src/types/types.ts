@@ -15,7 +15,7 @@ export interface Theme {
   };
   prompt?: {
     textColor?: string;
-    history?: {
+    label?: {
       textColor?: string;
     };
   };

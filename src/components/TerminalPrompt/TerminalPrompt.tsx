@@ -6,15 +6,17 @@ import { MessageLines } from "../MessageLines.tsx/MessageLines";
 export interface TerminalPromptProps {
   username?: string;
   initialCommands: Commands;
-  style?: React.CSSProperties;
-  historyTextColor?: string;
+  style: React.CSSProperties;
+  promptLabelTextColor: string;
+  inputTextColor: string;
 }
 
 export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
   username = "user@user",
   initialCommands,
   style,
-  historyTextColor,
+  promptLabelTextColor,
+  inputTextColor,
 }) => {
   const { prompt, setPrompt, history, handleSubmit } =
     useTerminal(initialCommands);
@@ -45,13 +47,16 @@ export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
       <History
         history={history}
         username={username}
-        textColor={historyTextColor}
+        historyLabelTextColor={promptLabelTextColor}
       />
       <form onSubmit={handleSubmit}>
         <label className={styles.label}>
-          {username}
-          {">"}
+          <span style={{ color: promptLabelTextColor }}>
+            {username}
+            {">"}
+          </span>
           <input
+            style={{ color: inputTextColor }}
             ref={inputRef}
             className={styles.input}
             onChange={handleInputChange}
@@ -69,19 +74,21 @@ export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
 interface HistoryProps {
   history: { prompt: string; response: string }[];
   username: string;
-  textColor?: string;
+  historyLabelTextColor: string;
 }
 
-const History: React.FC<HistoryProps> = ({ history, username, textColor }) => {
+const History: React.FC<HistoryProps> = ({
+  history,
+  username,
+  historyLabelTextColor,
+}) => {
   return (
     <div className={styles.history}>
       {history.map((entry, index) => (
         <div key={index} className={styles.historyEntry}>
-          <span
-            className={styles.historyEntry__user}
-            style={{ color: textColor }}
-          >
-            {username}&gt; {entry.prompt}
+          <span className={styles.historyEntry__user}>
+            <span style={{ color: historyLabelTextColor }}>{username}&gt;</span>{" "}
+            {entry.prompt}
           </span>
           <br />
           <MessageLines message={entry.response} />

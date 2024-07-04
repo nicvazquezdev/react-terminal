@@ -4,22 +4,22 @@ import { WindowActionsProvider } from "./context/WindowActionsContext";
 
 function App() {
   const customTheme = {
-    backgroundColor: "red",
+    backgroundColor: "#310823",
     header: {
-      textColor: "#61dafb",
+      textColor: "white",
       backgroundColor: "#20232a",
       icons: {
         fill: "lightgray",
       },
     },
     body: {
-      textColor: "#ffffff",
-      backgroundColor: "red",
+      textColor: "#fafafa",
+      backgroundColor: "",
     },
     prompt: {
-      textColor: "",
-      history: {
-        textColor: "#ff79c6",
+      textColor: "#fafafa",
+      label: {
+        textColor: "var(--green)",
       },
     },
   };
@@ -36,8 +36,11 @@ function App() {
         }}
       >
         <TerminalTemplate
-          initialMessage="hello world"
-          username="nic@linux"
+          initialMessage={`
+To run a command as administrator (user "root"), use "sudo <command>".\n
+See "man sudo_root" for details.
+`}
+          username="nicvazquez@react-terminal"
           draggable={true}
           theme={customTheme}
           minimizedByDefault={false}

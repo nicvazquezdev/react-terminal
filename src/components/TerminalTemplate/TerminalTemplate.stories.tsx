@@ -35,20 +35,22 @@ See "man sudo_root" for details.
   draggable: true,
   minimizedByDefault: false,
   theme: {
-    backgroundColor: "#282c34",
+    backgroundColor: "#310823",
     header: {
-      textColor: "#61dafb",
+      textColor: "white",
       backgroundColor: "#20232a",
-      icons: { fill: "#61dafb" },
+      icons: {
+        fill: "lightgray",
+      },
     },
     body: {
-      textColor: "#ffffff",
-      backgroundColor: "#282c34",
+      textColor: "#fafafa",
+      backgroundColor: "",
     },
     prompt: {
       textColor: "#fafafa",
-      history: {
-        textColor: "#ff79c6",
+      label: {
+        textColor: "var(--green)",
       },
     },
   },

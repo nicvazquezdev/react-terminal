@@ -92,9 +92,10 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
           username={username}
           initialCommands={commands}
           style={{
-            color: mergedTheme.prompt?.textColor,
+            color: mergedTheme.body?.textColor,
           }}
-          historyTextColor={mergedTheme.prompt?.history?.textColor}
+          promptLabelTextColor={mergedTheme.prompt?.label?.textColor || ""}
+          inputTextColor={mergedTheme.prompt?.textColor || ""}
         />
       </div>
     </div>
