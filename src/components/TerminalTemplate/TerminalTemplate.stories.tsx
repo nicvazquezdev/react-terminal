@@ -8,6 +8,7 @@ export default {
   component: TerminalTemplate,
   argTypes: {
     username: { control: "text" },
+    backgroundColor: { control: "text" },
   },
   decorators: [
     (Story) => (

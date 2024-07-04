@@ -11,12 +11,14 @@ export interface TerminalTemplateProps {
   initialMessage: string;
   username: string;
   draggable: boolean;
+  backgroundColor?: string;
 }
 
 export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
   initialMessage,
   username,
   draggable = false,
+  backgroundColor = "#111",
 }) => {
   const { containerRef, handleMouseDown, position, setPosition } =
     useDragDrop(draggable);
@@ -45,7 +47,11 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
       className={`${styles.container} ${
         isMaximized && styles.containerMaximized
       } ${draggable && styles.containerDraggable}`}
-      style={{ left: position.x, top: position.y }}
+      style={{
+        left: position.x,
+        top: position.y,
+        backgroundColor,
+      }}
     >
       <TerminalHeader
         username={username}
