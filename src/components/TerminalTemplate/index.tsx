@@ -5,17 +5,20 @@ import { MinimizedTerminal } from "../MinimizedTerminal";
 import { MessageLines } from "../MessageLines.tsx/MessageLines";
 import { useDragDrop, useWindowActions } from "@/hooks";
 import { TerminalHeader } from "../TerminalHeader";
-import { Theme } from "@/types/types";
+import { TerminalTemplateProps } from "@/types/types";
 import { commands, defaultTheme } from "@/data";
 
-export interface TerminalTemplateProps {
-  initialMessage: string;
-  username: string;
-  draggable: boolean;
-  minimizedByDefault: boolean;
-  theme?: Theme;
-}
-
+/**
+ * TerminalTemplate component provides a customizable terminal UI.
+ *
+ * @param {string} initialMessage - The initial message to display in the terminal.
+ * @param {string} username - The username to display in the terminal prompt.
+ * @param {boolean} draggable - Determines if the terminal window is draggable.
+ * @param {boolean} minimizedByDefault - Determines if the terminal should be minimized by default.
+ * @param {Theme} [theme] - Theme customization options for the terminal.
+ *
+ * @returns {JSX.Element} A customizable terminal component.
+ */
 export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
   initialMessage,
   username,

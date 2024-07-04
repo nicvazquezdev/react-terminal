@@ -20,3 +20,30 @@ export interface Theme {
     };
   };
 }
+
+export interface TerminalTemplateProps {
+  /**
+   * The initial message to display in the terminal.
+   */
+  initialMessage: string;
+
+  /**
+   * The username to display in the terminal prompt.
+   */
+  username: string;
+
+  /**
+   * Determines if the terminal window is draggable.
+   */
+  draggable: boolean;
+
+  /**
+   * Determines if the terminal should be minimized by default.
+   */
+  minimizedByDefault: boolean;
+
+  /**
+   * Theme customization options for the terminal.
+   */
+  theme?: Theme;
+}

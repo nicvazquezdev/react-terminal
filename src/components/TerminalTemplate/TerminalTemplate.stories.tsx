@@ -1,7 +1,8 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { TerminalTemplate, TerminalTemplateProps } from ".";
+import { TerminalTemplate } from ".";
 import { WindowActionsProvider } from "@/context/WindowActionsContext";
 import "@/globals.css";
+import { TerminalTemplateProps } from "@/types/types";
 
 export default {
   title: "Components/TerminalTemplate",
