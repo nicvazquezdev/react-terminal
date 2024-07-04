@@ -7,7 +7,7 @@ import { ActionType } from "@/types/types";
 import { useWindowActions } from "@/hooks";
 
 interface TerminalIconsProps {
-  iconFill?: string; // Nueva prop para el fill de los íconos
+  iconFill?: string;
 }
 
 export const TerminalIcons: React.FC<TerminalIconsProps> = ({ iconFill }) => {
@@ -51,7 +51,7 @@ export const TerminalIcons: React.FC<TerminalIconsProps> = ({ iconFill }) => {
             src={icon.src}
             alt={icon.alt}
             className={styles.icons__iconContainer__icon}
-            style={{ fill: iconFill }} // Aplicar el fill de los íconos
+            style={{ fill: iconFill }}
           />
         </div>
       ))}

@@ -13,7 +13,7 @@ export interface TerminalTemplateProps {
   username: string;
   draggable: boolean;
   minimizedByDefault: boolean;
-  theme?: Theme; // Agregar el tema como una prop
+  theme?: Theme;
 }
 
 export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
@@ -26,7 +26,7 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
     header: {
       textColor: "#FFF",
       backgroundColor: "#222",
-      icons: { fill: "#FFF" }, // Valor por defecto para el fill de los íconos
+      icons: { fill: "#FFF" },
     },
     body: { textColor: "#EEE", backgroundColor: "#111" },
     prompt: { textColor: "#0F0" },
@@ -81,7 +81,7 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
           backgroundColor: theme.header?.backgroundColor,
           color: theme.header?.textColor,
         }}
-        iconFill={theme.header?.icons?.fill} // Pasar el fill de los íconos
+        iconFill={theme.header?.icons?.fill}
       />
       <div
         className={styles.body}

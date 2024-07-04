@@ -6,7 +6,7 @@ export interface Theme {
     textColor?: string;
     backgroundColor?: string;
     icons?: {
-      fill?: string; // Nueva propiedad para el fill de los íconos
+      fill?: string;
     };
   };
   body?: {

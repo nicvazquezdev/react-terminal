@@ -8,7 +8,7 @@ export default {
   argTypes: {
     username: { control: "text" },
     initialCommands: { control: "object" },
-    style: { control: "object" }, // Agregar control para el estilo
+    style: { control: "object" },
   },
 } as Meta;
 
@@ -24,7 +24,7 @@ Default.args = {
     help: "This is the help command. It lists all available commands.",
   },
   style: {
-    color: "#0F0", // Estilo por defecto para el texto del prompt
+    color: "#0F0",
   },
 };
 
@@ -37,6 +37,6 @@ CustomPrompt.args = {
     custom: "This is a custom command response.",
   },
   style: {
-    color: "#FF0", // Estilo personalizado para el texto del prompt
+    color: "#FF0",
   },
 };

@@ -7,25 +7,25 @@ export interface TerminalHeaderProps {
   handleMouseDown: (
     event: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>,
   ) => void;
-  style?: React.CSSProperties; // Añadir prop style
-  iconFill?: string; // Nueva prop para el fill de los íconos
+  style?: React.CSSProperties;
+  iconFill?: string;
 }
 
 export const TerminalHeader: React.FC<TerminalHeaderProps> = ({
   username,
   draggable,
   handleMouseDown,
-  style, // Añadir prop style
-  iconFill, // Añadir prop iconFill
+  style,
+  iconFill,
 }) => (
   <div
     className={styles.header}
     onMouseDown={draggable ? handleMouseDown : undefined}
     onTouchStart={draggable ? handleMouseDown : undefined}
-    style={style} // Aplicar el estilo
+    style={style}
   >
     <div className={styles.spacer}></div>
     <span>{username}~</span>
-    <TerminalIcons iconFill={iconFill} /> {/* Pasar el fill de los íconos */}
+    <TerminalIcons iconFill={iconFill} />
   </div>
 );

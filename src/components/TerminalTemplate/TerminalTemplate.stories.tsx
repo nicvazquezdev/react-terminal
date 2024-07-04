@@ -9,7 +9,7 @@ export default {
   argTypes: {
     username: { control: "text" },
     draggable: { control: "boolean" },
-    theme: { control: "object" }, // Agregar control para el tema
+    theme: { control: "object" },
   },
   decorators: [
     (Story) => (
@@ -38,7 +38,7 @@ See "man sudo_root" for details.
     header: {
       textColor: "#61dafb",
       backgroundColor: "#20232a",
-      icons: { fill: "#61dafb" }, // Color del fill de los íconos
+      icons: { fill: "#61dafb" },
     },
     body: {
       textColor: "#ffffff",
