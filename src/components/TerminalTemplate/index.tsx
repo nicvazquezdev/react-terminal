@@ -6,29 +6,13 @@ import { MinimizedTerminal } from "../MinimizedTerminal";
 import { MessageLines } from "../MessageLines.tsx/MessageLines";
 import { useDragDrop, useWindowActions } from "@/hooks";
 import { TerminalHeader } from "../TerminalHeader";
-
-export interface Theme {
-  backgroundColor?: string;
-  header?: {
-    textColor?: string;
-    backgroundColor?: string;
-    icons?: {
-      fill?: string; // Nueva propiedad para el fill de los íconos
-    };
-  };
-  body?: {
-    textColor?: string;
-    backgroundColor?: string;
-  };
-  prompt?: {
-    textColor?: string;
-  };
-}
+import { Theme } from "@/types/types";
 
 export interface TerminalTemplateProps {
   initialMessage: string;
   username: string;
   draggable: boolean;
+  minimizedByDefault: boolean;
   theme?: Theme; // Agregar el tema como una prop
 }
 
@@ -36,6 +20,7 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
   initialMessage,
   username,
   draggable = false,
+  minimizedByDefault = false,
   theme = {
     backgroundColor: "#111",
     header: {
@@ -49,8 +34,15 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
 }) => {
   const { containerRef, handleMouseDown, position, setPosition } =
     useDragDrop(draggable);
-  const { isMinimized, isMaximized, isClosed } = useWindowActions();
+  const { isMinimized, isMaximized, isClosed, handleAction } =
+    useWindowActions();
   const [prevPosition, setPrevPosition] = useState(position);
+
+  useEffect(() => {
+    if (minimizedByDefault) {
+      handleAction("minimize");
+    }
+  }, []);
 
   useEffect(() => {
     if (!isMinimized) {

@@ -32,6 +32,7 @@ See "man sudo_root" for details.
 `,
   username: "user@linux-desktop",
   draggable: true,
+  minimizedByDefault: false,
   theme: {
     backgroundColor: "#282c34",
     header: {
