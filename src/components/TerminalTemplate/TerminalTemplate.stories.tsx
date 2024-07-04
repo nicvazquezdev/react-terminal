@@ -37,6 +37,7 @@ See "man sudo_root" for details.
     header: {
       textColor: "#61dafb",
       backgroundColor: "#20232a",
+      icons: { fill: "#61dafb" }, // Color del fill de los íconos
     },
     body: {
       textColor: "#ffffff",

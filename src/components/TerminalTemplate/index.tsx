@@ -12,6 +12,9 @@ export interface Theme {
   header?: {
     textColor?: string;
     backgroundColor?: string;
+    icons?: {
+      fill?: string; // Nueva propiedad para el fill de los íconos
+    };
   };
   body?: {
     textColor?: string;
@@ -35,7 +38,11 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
   draggable = false,
   theme = {
     backgroundColor: "#111",
-    header: { textColor: "#FFF", backgroundColor: "#222" },
+    header: {
+      textColor: "#FFF",
+      backgroundColor: "#222",
+      icons: { fill: "#FFF" }, // Valor por defecto para el fill de los íconos
+    },
     body: { textColor: "#EEE", backgroundColor: "#111" },
     prompt: { textColor: "#0F0" },
   },
@@ -82,6 +89,7 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
           backgroundColor: theme.header?.backgroundColor,
           color: theme.header?.textColor,
         }}
+        iconFill={theme.header?.icons?.fill} // Pasar el fill de los íconos
       />
       <div
         className={styles.body}
