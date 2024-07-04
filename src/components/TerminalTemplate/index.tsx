@@ -7,18 +7,38 @@ import { MessageLines } from "../MessageLines.tsx/MessageLines";
 import { useDragDrop, useWindowActions } from "@/hooks";
 import { TerminalHeader } from "../TerminalHeader";
 
+export interface Theme {
+  backgroundColor?: string;
+  header?: {
+    textColor?: string;
+    backgroundColor?: string;
+  };
+  body?: {
+    textColor?: string;
+    backgroundColor?: string;
+  };
+  prompt?: {
+    textColor?: string;
+  };
+}
+
 export interface TerminalTemplateProps {
   initialMessage: string;
   username: string;
   draggable: boolean;
-  backgroundColor?: string;
+  theme?: Theme; // Agregar el tema como una prop
 }
 
 export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
   initialMessage,
   username,
   draggable = false,
-  backgroundColor = "#111",
+  theme = {
+    backgroundColor: "#111",
+    header: { textColor: "#FFF", backgroundColor: "#222" },
+    body: { textColor: "#EEE", backgroundColor: "#111" },
+    prompt: { textColor: "#0F0" },
+  },
 }) => {
   const { containerRef, handleMouseDown, position, setPosition } =
     useDragDrop(draggable);
@@ -50,17 +70,34 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
       style={{
         left: position.x,
         top: position.y,
-        backgroundColor,
+        backgroundColor: theme.backgroundColor,
+        color: theme.body?.textColor,
       }}
     >
       <TerminalHeader
         username={username}
         draggable={draggable}
         handleMouseDown={handleMouseDown}
+        style={{
+          backgroundColor: theme.header?.backgroundColor,
+          color: theme.header?.textColor,
+        }}
       />
-      <div className={styles.body}>
+      <div
+        className={styles.body}
+        style={{
+          backgroundColor: theme.body?.backgroundColor,
+          color: theme.body?.textColor,
+        }}
+      >
         <MessageLines message={initialMessage} />
-        <TerminalPrompt username={username} initialCommands={commands} />
+        <TerminalPrompt
+          username={username}
+          initialCommands={commands}
+          style={{
+            color: theme.prompt?.textColor,
+          }}
+        />
       </div>
     </div>
   );

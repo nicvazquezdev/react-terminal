@@ -8,7 +8,8 @@ export default {
   component: TerminalTemplate,
   argTypes: {
     username: { control: "text" },
-    backgroundColor: { control: "text" },
+    draggable: { control: "boolean" },
+    theme: { control: "object" }, // Agregar control para el tema
   },
   decorators: [
     (Story) => (
@@ -31,4 +32,18 @@ See "man sudo_root" for details.
 `,
   username: "user@linux-desktop",
   draggable: true,
+  theme: {
+    backgroundColor: "#282c34",
+    header: {
+      textColor: "#61dafb",
+      backgroundColor: "#20232a",
+    },
+    body: {
+      textColor: "#ffffff",
+      backgroundColor: "#282c34",
+    },
+    prompt: {
+      textColor: "#61dafb",
+    },
+  },
 };

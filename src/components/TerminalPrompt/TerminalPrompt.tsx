@@ -6,11 +6,13 @@ import { MessageLines } from "../MessageLines.tsx/MessageLines";
 export interface TerminalPromptProps {
   username?: string;
   initialCommands: Commands;
+  style?: React.CSSProperties; // Añadir prop style
 }
 
 export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
   username = "user@user",
   initialCommands,
+  style, // Añadir prop style
 }) => {
   const { prompt, setPrompt, history, handleSubmit } =
     useTerminal(initialCommands);
@@ -37,7 +39,7 @@ export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={style}>
       <History history={history} username={username} />
       <form onSubmit={handleSubmit}>
         <label className={styles.label}>
