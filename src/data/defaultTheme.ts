@@ -1,17 +1,22 @@
 import { Theme } from "@/types/types";
 
 export const defaultTheme: Theme = {
-  backgroundColor: "#111",
+  backgroundColor: "#310823",
   header: {
-    textColor: "#FFF",
-    backgroundColor: "#222",
-    icons: { fill: "#FFF" },
+    textColor: "white",
+    backgroundColor: "#20232a",
+    icons: {
+      fill: "lightgray",
+    },
   },
-  body: { textColor: "#EEE", backgroundColor: "#111" },
+  body: {
+    textColor: "#fafafa",
+    backgroundColor: "",
+  },
   prompt: {
-    textColor: "#0F0",
-    history: {
-      textColor: "#FFF",
+    textColor: "#fafafa",
+    label: {
+      textColor: "var(--green)",
     },
   },
 };

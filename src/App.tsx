@@ -1,28 +1,9 @@
 import "./App.css";
 import { TerminalTemplate } from "./components/TerminalTemplate";
 import { WindowActionsProvider } from "./context/WindowActionsContext";
+import { defaultTheme } from "./data";
 
 function App() {
-  const customTheme = {
-    backgroundColor: "#310823",
-    header: {
-      textColor: "white",
-      backgroundColor: "#20232a",
-      icons: {
-        fill: "lightgray",
-      },
-    },
-    body: {
-      textColor: "#fafafa",
-      backgroundColor: "",
-    },
-    prompt: {
-      textColor: "#fafafa",
-      label: {
-        textColor: "var(--green)",
-      },
-    },
-  };
   return (
     <WindowActionsProvider>
       <div
@@ -42,7 +23,7 @@ See "man sudo_root" for details.
 `}
           username="nicvazquez@react-terminal"
           draggable={true}
-          theme={customTheme}
+          theme={defaultTheme}
           minimizedByDefault={false}
         />
       </div>
