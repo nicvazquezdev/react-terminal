@@ -4,7 +4,7 @@ import { WindowActionsProvider } from "./context/WindowActionsContext";
 
 function App() {
   const customTheme = {
-    backgroundColor: "#282c34",
+    backgroundColor: "red",
     header: {
       textColor: "#61dafb",
       backgroundColor: "#20232a",
@@ -14,7 +14,7 @@ function App() {
     },
     body: {
       textColor: "#ffffff",
-      backgroundColor: "#282c34",
+      backgroundColor: "red",
     },
     prompt: {
       textColor: "",

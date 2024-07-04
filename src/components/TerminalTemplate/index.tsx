@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { commands } from "@/data/commands";
 import { TerminalPrompt } from "../TerminalPrompt/TerminalPrompt";
 import styles from "./terminalTemplate.module.css";
 import { MinimizedTerminal } from "../MinimizedTerminal";
@@ -7,6 +6,7 @@ import { MessageLines } from "../MessageLines.tsx/MessageLines";
 import { useDragDrop, useWindowActions } from "@/hooks";
 import { TerminalHeader } from "../TerminalHeader";
 import { Theme } from "@/types/types";
+import { commands, defaultTheme } from "@/data";
 
 export interface TerminalTemplateProps {
   initialMessage: string;
@@ -21,22 +21,10 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
   username,
   draggable = false,
   minimizedByDefault = false,
-  theme = {
-    backgroundColor: "#111",
-    header: {
-      textColor: "#FFF",
-      backgroundColor: "#222",
-      icons: { fill: "#FFF" },
-    },
-    body: { textColor: "#EEE", backgroundColor: "#111" },
-    prompt: {
-      textColor: "#0F0",
-      history: {
-        textColor: "#FFF",
-      },
-    },
-  },
+  theme,
 }) => {
+  const mergedTheme = { ...defaultTheme, ...theme }; // Fusionar los temas
+
   const { containerRef, handleMouseDown, position, setPosition } =
     useDragDrop(draggable);
   const { isMinimized, isMaximized, isClosed, handleAction } =
@@ -74,8 +62,8 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
       style={{
         left: position.x,
         top: position.y,
-        backgroundColor: theme.backgroundColor,
-        color: theme.body?.textColor,
+        backgroundColor: mergedTheme.backgroundColor,
+        color: mergedTheme.body?.textColor,
       }}
     >
       <TerminalHeader
@@ -83,16 +71,16 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
         draggable={draggable}
         handleMouseDown={handleMouseDown}
         style={{
-          backgroundColor: theme.header?.backgroundColor,
-          color: theme.header?.textColor,
+          backgroundColor: mergedTheme.header?.backgroundColor,
+          color: mergedTheme.header?.textColor,
         }}
-        iconFill={theme.header?.icons?.fill}
+        iconFill={mergedTheme.header?.icons?.fill}
       />
       <div
         className={styles.body}
         style={{
-          backgroundColor: theme.body?.backgroundColor,
-          color: theme.body?.textColor,
+          backgroundColor: mergedTheme.body?.backgroundColor,
+          color: mergedTheme.body?.textColor,
         }}
       >
         <MessageLines message={initialMessage} />
@@ -100,9 +88,9 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
           username={username}
           initialCommands={commands}
           style={{
-            color: theme.prompt?.textColor,
+            color: mergedTheme.prompt?.textColor,
           }}
-          historyTextColor={theme.prompt?.history?.textColor}
+          historyTextColor={mergedTheme.prompt?.history?.textColor}
         />
       </div>
     </div>
