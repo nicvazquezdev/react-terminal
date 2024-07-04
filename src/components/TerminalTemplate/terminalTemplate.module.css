@@ -3,7 +3,8 @@
   border-radius: 5px;
   width: 300px;
   height: 300px;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .containerDraggable {
@@ -31,24 +32,8 @@
     height: 400px;
     width: 600px;
     scroll-behavior: auto;
-
-    &::-webkit-scrollbar {
-      width: 5px;
-    }
-
-    /* Track */
-    &::-webkit-scrollbar-track {
-      -webkit-border-radius: 10px;
-      border-radius: 10px;
-    }
-
-    /* Handle */
-    &::-webkit-scrollbar-thumb {
-      -webkit-border-radius: 10px;
-      border-radius: 10px;
-      background: gray;
-    }
   }
+
   .containerMaximized {
     width: 100vw;
     height: 100vh;
@@ -57,4 +42,23 @@
 
 .body {
   padding: 0.5rem 0 0 0.5rem;
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  .body::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .body::-webkit-scrollbar-track {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+  }
+
+  .body::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: gray;
+  }
 }
