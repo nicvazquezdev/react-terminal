@@ -69,7 +69,7 @@ export const TerminalPrompt: React.FC<TerminalPromptProps> = ({
 interface HistoryProps {
   history: { prompt: string; response: string }[];
   username: string;
-  textColor?: string; // Nueva prop para el color del texto
+  textColor?: string;
 }
 
 const History: React.FC<HistoryProps> = ({ history, username, textColor }) => {

@@ -23,7 +23,7 @@ export const TerminalTemplate: React.FC<TerminalTemplateProps> = ({
   minimizedByDefault = false,
   theme,
 }) => {
-  const mergedTheme = { ...defaultTheme, ...theme }; // Fusionar los temas
+  const mergedTheme = { ...defaultTheme, ...theme };
 
   const { containerRef, handleMouseDown, position, setPosition } =
     useDragDrop(draggable);

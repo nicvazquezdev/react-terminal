@@ -34,7 +34,7 @@ See "man sudo_root" for details.
   draggable: true,
   minimizedByDefault: false,
   theme: {
-    // backgroundColor: "#282c34",
+    backgroundColor: "#282c34",
     header: {
       textColor: "#61dafb",
       backgroundColor: "#20232a",
@@ -42,7 +42,7 @@ See "man sudo_root" for details.
     },
     body: {
       textColor: "#ffffff",
-      // backgroundColor: "#282c34",
+      backgroundColor: "#282c34",
     },
     prompt: {
       textColor: "#fafafa",
