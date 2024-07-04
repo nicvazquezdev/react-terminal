@@ -1,0 +1,21 @@
+{
+  "prettier.arrowParens": "always",
+  "prettier.bracketSameLine": false,
+  "prettier.bracketSpacing": true,
+  "prettier.semi": true,
+  "prettier.experimentalTernaries": false,
+  "prettier.singleQuote": false,
+  "prettier.jsxSingleQuote": false,
+  "prettier.quoteProps": "as-needed",
+  "prettier.trailingComma": "all",
+  "prettier.singleAttributePerLine": false,
+  "prettier.htmlWhitespaceSensitivity": "css",
+  "prettier.vueIndentScriptAndStyle": false,
+  "prettier.proseWrap": "preserve",
+  "prettier.insertPragma": false,
+  "prettier.printWidth": 80,
+  "prettier.requirePragma": false,
+  "prettier.tabWidth": 2,
+  "prettier.useTabs": false,
+  "prettier.embeddedLanguageFormatting": "auto"
+}
