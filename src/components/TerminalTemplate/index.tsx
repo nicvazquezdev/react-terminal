@@ -3,10 +3,9 @@ import { commands } from "@/data/commands";
 import { TerminalIcons } from "../TerminalIcons";
 import { TerminalPrompt } from "../TerminalPrompt/TerminalPrompt";
 import styles from "./terminalTemplate.module.css";
-import { useDragDrop } from "@/hooks/useDragDrop";
 import { MinimizedTerminal } from "../MinimizedTerminal";
 import { MessageLines } from "../MessageLines.tsx/MessageLines";
-import { useWindowActions } from "@/hooks";
+import { useDragDrop, useWindowActions } from "@/hooks";
 
 export interface TerminalTemplateProps {
   initialMessage: string;
